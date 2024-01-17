@@ -93,59 +93,15 @@ module.exports = function (buildMode) {
 				maxAsyncRequests: 30,
 				maxInitialRequests: 30,
 				enforceSizeThreshold: 50000,
-				cacheGroups: {
-					default: {
-						minChunks: 4,
-						priority: -20,
-						reuseExistingChunk: true,
-					},
-					react: {
-						test: /[\\/]node_modules[\\/](react)[\\/]/,
-						name: "react",
-						priority: 100,
-						enforce: true,
-					},
-					reactDOM: {
-						test: /[\\/]node_modules[\\/](react-dom)[\\/]/,
-						name: "reactDOM",
-						priority: 100,
-						enforce: true,
-					},
-					reacttoastify: {
-						test: /[\\/]node_modules[\\/](react-toastify)[\\/]/,
-						name: "toastify",
-						priority: -20,
-						enforce: true,
-					},
-					wagmi: {
-						test: /[\\/]node_modules[\\/](@wagmi)[\\/]/,
-						name: "wagmi",
-						priority: -5,
-						enforce: true,
-					},
-					web3modal: {
-						test: /[\\/]node_modules[\\/](@web3modal)[\\/]/,
-						name: "@web3modal",
-						priority: -10,
-						enforce: true,
-					},
-					viem: {
-						test: /[\\/]node_modules[\\/](viem)[\\/]/,
-						name: "viem",
-						priority: -10,
-						enforce: true,
-					},
-					defaultVendors: {
-						test: /[\\/]node_modules[\\/]/,
-						priority: -10,
-						reuseExistingChunk: true,
-					},
-				},
 			},
 		},
 
 		plugins: plugins,
 		resolve: {
+			alias: {
+				"~": path.resolve(__dirname, "./src"),
+				"@": path.resolve(__dirname, "./public/assets"),
+			},
 			extensions: [".js", ".jsx", ".json", "svg", ".png"],
 			fallback: {
 				crypto: require.resolve("crypto-browserify"),
@@ -168,16 +124,6 @@ module.exports = function (buildMode) {
 							loader: "file-loader",
 						},
 					],
-				},
-				{
-					test: /\.m?js/,
-					type: "javascript/auto",
-				},
-				{
-					test: /\.m?js/,
-					resolve: {
-						fullySpecified: false,
-					},
 				},
 				{
 					test: /\.(js)$/i,
