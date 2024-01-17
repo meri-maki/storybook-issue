@@ -1,0 +1,38 @@
+[data-object] {
+    will-change: transform;
+    position: absolute;
+
+    >img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+[data-object]:nth-child(1),
+[data-object]:nth-child(5),
+[data-object]:nth-child(10) {
+    animation: moving1 28s ease-in-out infinite;
+}
+
+[data-object]:nth-child(2),
+[data-object]:nth-child(6),
+[data-object]:nth-child(9) {
+    animation: moving2 25s ease-in-out infinite reverse;
+}
+
+[data-object]:nth-child(3),
+[data-object]:nth-child(4) {
+    animation: moving3 32s ease-in-out infinite;
+}
+
+[data-object]:nth-child(7),
+[data-object]:nth-child(8) {
+    animation: moving4 23s linear infinite reverse;
+}
+
+.safari {
+    [data-object] {
+        animation: none;
+    }
+}

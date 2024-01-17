@@ -1,0 +1,15 @@
+/.idea/
+/.vscode/
+/.settings/
+/node_modules/
+/build/
+/dist/
+
+/release/
+/.buildpath
+/.project
+/public/price.json
+/dist/price.json
+/build/price.json
+/.env
+/storybook-static
