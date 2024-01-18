@@ -6,9 +6,7 @@ function buildCssLoader(isDev: boolean) {
     return {
         test: /\.s[ac]ss$/i,
         use: [
-            // Creates `style` nodes from JS strings
             isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-            // Translates CSS into CommonJS
             {
                 loader: "css-loader",
                 options: {
@@ -44,14 +42,6 @@ export default ({ config }) => {
       '@': path.resolve(__dirname, '..','public','assets'),
     }
 
-    // eslint-disable-next-line no-param-reassign
-    /*    config.module?.rules? = config.module?.rules?.map((rule: RuleSetRule) => {
-        if (rule !==/svg/.test(rule.test as string)) {
-            return { ...rule, exclude: /\.svg$/i }
-        }
-
-        return rule;
-    }) */
 
 
     if (config.module?.rules) {
@@ -72,32 +62,6 @@ export default ({ config }) => {
         use: ["@svgr/webpack"],
     })
     config.module?.rules?.push(buildCssLoader(true))
-
-     
-
-
-
-   /*  config.module.rules.push({
-      test: /\.jsx?$/,
-      exclude: /(node_modules|bower_components|package\.json)/,
-      use: {
-        loader: "babel-loader",
-        options: {
-          presets: [
-            "@babel/preset-env",
-            ["@babel/preset-react", { runtime: "automatic" }],
-          ],
-          plugins: [
-            ["module-resolver", {
-              alias: {
-                "~": "./src",
-                "@": "./public/assets",
-              },
-            }],
-          ],
-        },
-      },
-    }); */
 
     return config
 }
